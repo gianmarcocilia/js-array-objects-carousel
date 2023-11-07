@@ -55,7 +55,7 @@ activeThumb[index].classList.add("active");
 const nextBtn = document.querySelector(".next");
 nextBtn.addEventListener("click", nextPic);
 
-let start;
+let start = setInterval(nextPic, 3000);
 items.addEventListener("mouseenter", stopCarousel);
 items.addEventListener("mouseleave", autoPlay);
 
