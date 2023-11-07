@@ -34,7 +34,7 @@ images.forEach((curImage) => {
     <img src="${curImage.image}" alt="${curImage.title}">
     <h2>${curImage.title}</h2>
     <p>${curImage.text}</p>
-    </div>
+    </div> 
     `;
     thumbsStr += `
     <div class="thumb">
@@ -55,12 +55,22 @@ activeThumb[index].classList.add("active");
 const nextBtn = document.querySelector(".next");
 nextBtn.addEventListener("click", nextPic);
 
-let start = setInterval(nextPic, 3000);
+let start;
 items.addEventListener("mouseenter", stopCarousel);
 items.addEventListener("mouseleave", autoPlay);
 
 const prevBtn = document.querySelector(".prev");
 prevBtn.addEventListener("click", prevPic);
+
+let control;
+const btnInverti = document.getElementById("inverti");
+btnInverti.addEventListener("click", inverti);
+
+const btnStart = document.getElementById("start");
+btnStart.addEventListener("click", autoPlay);
+
+const btnStop = document.getElementById("stop");
+btnStop.addEventListener("click", stopCarousel);
 
 
 // FUNZIONZIONI
@@ -97,10 +107,28 @@ function prevPic () {
 }
 
 function stopCarousel() {
-    clearInterval(start);
+    if (start !== undefined) {
+        clearInterval(start);
+        start = undefined;
+    }
 }
 
 function autoPlay() {
-    start = setInterval(nextPic, 3000);
+    if (start === undefined) {
+        start = setInterval(nextPic, 3000);
+        control = 1;
+    }
+}
+
+function inverti(){
+    if (start !== undefined && control === 1) {
+        clearInterval(start);
+        start = setInterval(prevPic, 3000);
+        control = 0;
+    } else if (start !== undefined && control === 0) {
+        clearInterval(start);
+        start = setInterval(nextPic, 3000);
+        control = 1;
+    }
 }
 

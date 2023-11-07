@@ -123,3 +123,24 @@
     left: 50%;
     transform: translate(-50%) rotate(135deg);
 }
+
+.button-container {
+    position: absolute;
+    left: 50%;
+    top: 65%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem 0;
+}
+
+button {
+    border: 0;
+    padding: 10px;
+    border-radius: 5px;
+    width: 75px;
+    background-color: rgb(49, 49, 49);
+    color: white;
+    cursor: pointer;
+}
