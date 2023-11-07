@@ -55,6 +55,10 @@ activeThumb[index].classList.add("active");
 const nextBtn = document.querySelector(".next");
 nextBtn.addEventListener("click", nextPic);
 
+let start = setInterval(nextPic, 3000);
+items.addEventListener("mouseenter", stopCarousel);
+items.addEventListener("mouseleave", autoPlay);
+
 const prevBtn = document.querySelector(".prev");
 prevBtn.addEventListener("click", prevPic);
 
@@ -92,5 +96,11 @@ function prevPic () {
     activeItem[index].classList.add("active");
 }
 
+function stopCarousel() {
+    clearInterval(start);
+}
 
+function autoPlay() {
+    start = setInterval(nextPic, 3000);
+}
 
